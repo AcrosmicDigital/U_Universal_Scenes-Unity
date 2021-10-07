@@ -1,0 +1,3 @@
+In build settings
+  Unload the existing scenes 
+  Add all the scenes in the folder 
