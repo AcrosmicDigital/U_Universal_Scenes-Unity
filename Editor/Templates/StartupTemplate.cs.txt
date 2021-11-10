@@ -15,7 +15,7 @@ public static class UscenesStartup
             //SceneMonitor.Apply(Uscenes.Selectors.ProdSelectors);
 
             // Apply transitions
-            //SceneMonitor.Apply(UscenesTransitions.ProdTransitions);
+            //SceneMonitor.Apply(UscenesTransitions.TransitionOne);
 
             // Enable
             //SceneMonitor.Enable();
