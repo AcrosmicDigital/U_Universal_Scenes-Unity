@@ -1,0 +1,25 @@
+using UnityEngine;
+using U.Universal.Scenes;
+
+public static class UscenesStartup
+{
+
+    [RuntimeInitializeOnLoadMethod]
+    public static void InitializeOnLoadMethod()
+    {
+
+        if (true)  // Disable with false
+        {
+
+            // Apply selectors
+            //SceneMonitor.Apply(Uscenes.Selectors.ProdSelectors);
+
+            // Apply transitions
+            //SceneMonitor.Apply(UscenesTransitions.ProdTransitions);
+
+            // Enable
+            //SceneMonitor.Enable();
+
+        }
+    }
+}

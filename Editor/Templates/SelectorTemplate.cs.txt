@@ -12,10 +12,10 @@ public static partial class Uscenes
             new SceneSelector
             {
                 pattern = "*",
-                onLoad = (s) => Debug.Log("Uscenes: onLoad"),
-                onSetActive = (s) => Debug.Log("Uscenes: onSetActive"),
-                onSetInactive = (s) => Debug.Log("Uscenes: onSetInactive"),
-                onUnload = (s) => Debug.Log("Uscenes: onUnload"),
+                //onLoad = (s) => Debug.Log("Uscenes: onLoad"),
+                //onSetActive = (s) => Debug.Log("Uscenes: onSetActive"),
+                //onSetInactive = (s) => Debug.Log("Uscenes: onSetInactive"),
+                //onUnload = (s) => Debug.Log("Uscenes: onUnload"),
             },
             */
 

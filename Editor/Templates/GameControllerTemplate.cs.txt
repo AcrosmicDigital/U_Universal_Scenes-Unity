@@ -1,0 +1,12 @@
+using UnityEngine;
+using U.Universal.Scenes;
+
+public static partial class GameController
+{
+    
+    public static void MainSceneLoaded()
+    {
+
+    }
+
+}
