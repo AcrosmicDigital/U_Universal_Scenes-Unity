@@ -140,13 +140,6 @@ namespace U.Universal.Scenes
 
             // Excecute on initialize delegates and scene loaded ans active
             var firstScene = SceneManager.GetActiveScene();
-            var onEnableselectors = SearchSelectors(firstScene, selectorsList);
-            foreach (var selector in onEnableselectors)
-            {
-                if (selector == null) continue;
-
-                ExecuteDelegate(selector.OnEnable, firstScene, "onEnable");
-            }
             OnSceneLoad(firstScene, LoadSceneMode.Single);
             OnActiveSceneChangedNullable(null, firstScene);
 

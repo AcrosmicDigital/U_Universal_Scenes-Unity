@@ -10,7 +10,6 @@ namespace U.Universal.Scenes
     public interface ISceneSelector
     {
         string Pattern();
-        void OnEnable(Scene scene);
         void OnUnload(Scene scene);
         void OnLoad(Scene scene);
         void OnSetActive(Scene scene);

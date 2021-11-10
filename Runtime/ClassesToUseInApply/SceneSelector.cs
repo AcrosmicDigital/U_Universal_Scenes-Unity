@@ -12,7 +12,6 @@ namespace U.Universal.Scenes
 
         public string pattern = "";  // The pattern that scenes will match
 
-        public Action<Scene> onEnable;  // Run the first time the scenemonitor is enabled
         public Action<Scene> onUnload; // Will excecute before this scene is unloaded
         public Action<Scene> onLoad; // Will excecute after this scene is loaded
         public Action<Scene> onSetActive; // Will excecute after this scene is set as active
@@ -21,7 +20,6 @@ namespace U.Universal.Scenes
 
         public string Pattern() => pattern;
 
-        public void OnEnable(Scene scene) => onEnable?.Invoke(scene);
         public void OnLoad(Scene scene) => onLoad?.Invoke(scene);
         public void OnSetActive(Scene scene) => onSetActive?.Invoke(scene);
         public void OnSetInactive(Scene scene) => onSetInactive?.Invoke(scene);

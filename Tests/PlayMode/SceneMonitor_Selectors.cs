@@ -35,13 +35,11 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         SceneSelector selector2 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
         };
 
         // All test must start in intro scene
@@ -72,7 +70,6 @@ public class SceneMonitor_Selectors
         SceneSelector config = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         // All test must start in intro scene
@@ -98,7 +95,6 @@ public class SceneMonitor_Selectors
         SceneSelector config = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => throw new Exception("First Scene Loaded"),
         };
 
         // All test must start in intro scene
@@ -131,7 +127,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 //pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -174,7 +169,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -227,7 +221,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -294,7 +287,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -356,7 +348,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -409,7 +400,6 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
@@ -463,7 +453,6 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         // All test must start in intro scene
@@ -494,25 +483,21 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         SceneSelector selector2 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
         };
 
         SceneSelector selector3 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
         };
 
         SceneSelector selector4 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
         };
 
         // All test must start in intro scene
@@ -548,12 +533,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -588,12 +571,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -602,12 +583,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
             },
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
             },
         };
 
@@ -642,7 +621,6 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         // All test must start in intro scene
@@ -677,7 +655,6 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         SceneMonitor.Apply(selector);
@@ -699,25 +676,21 @@ public class SceneMonitor_Selectors
         SceneSelector selector = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
         };
 
         SceneSelector selector2 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
         };
 
         SceneSelector selector3 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
         };
 
         SceneSelector selector4 = new SceneSelector
         {
             pattern = "*",
-            onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
         };
 
         SceneMonitor.Apply(selector, selector2, selector3, selector4);
@@ -741,12 +714,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "*",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -771,12 +742,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Intro",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "Menu",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -785,12 +754,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Play",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
             },
             new SceneSelector
             {
                 pattern = "Game",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
             },
         };
 
@@ -815,12 +782,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Intro",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "Menu",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -829,12 +794,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Play",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
             },
             new SceneSelector
             {
                 pattern = "Game",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
             },
         };
 
@@ -863,12 +826,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Intro",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "Menu",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -877,12 +838,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Play",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
             },
             new SceneSelector
             {
                 pattern = "Game",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
             },
         };
 
@@ -907,12 +866,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Intro",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded"),
             },
             new SceneSelector
             {
                 pattern = "Menu",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Two"),
             },
         };
 
@@ -921,12 +878,10 @@ public class SceneMonitor_Selectors
             new SceneSelector
             {
                 pattern = "Play",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Three"),
             },
             new SceneSelector
             {
                 pattern = "Game",
-                onEnable = (s) => Debug.LogAssertion("First Scene Loaded Four"),
             },
         };
 
