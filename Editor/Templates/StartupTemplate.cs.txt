@@ -1,11 +1,11 @@
 using UnityEngine;
 using U.Universal.Scenes;
 
-public static class UscenesStartup
+public static partial class Uscenes
 {
 
     [RuntimeInitializeOnLoadMethod]
-    public static void InitializeOnLoadMethod()
+    public static void Startup()
     {
 
         if (true)  // Disable with false
@@ -15,11 +15,12 @@ public static class UscenesStartup
             //SceneMonitor.Apply(Uscenes.Selectors.ProdSelectors);
 
             // Apply transitions
-            //SceneMonitor.Apply(UscenesTransitions.TransitionOne);
+            //SceneMonitor.Apply(UscenesTransitions.ProdTransitions);
 
             // Enable
             //SceneMonitor.Enable();
 
         }
     }
+
 }

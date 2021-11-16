@@ -12,16 +12,16 @@ namespace U.Universal.Scenes
     public sealed partial class SceneMonitor
     {
 
-        public enum TransitionMode
+        public enum JumpMode
         {
             Relative,  // Transitions waiting are canceled when any transition is performed
             Absolute,  // Transitions are not canceled when a transition in performed
         }
 
 
-        private static List<string> relativeTransitionsList = new List<string>(); // List of autoLoadids
-        private static List<string> absoluteTransitionsList = new List<string>(); // List of autoLoadids
-        private static List<ISceneTransition> transitiionsList = new List<ISceneTransition>();  // List of subscribed scene transitiions
+        private static List<string> relativeJumpsList = new List<string>(); // List of autoLoadids
+        private static List<string> absoluteJumpsList = new List<string>(); // List of autoLoadids
+        private static List<ISceneTransition> transitionsList = new List<ISceneTransition>();  // List of subscribed scene transitiions
         private static bool isInTransition = false;
 
 
@@ -32,7 +32,7 @@ namespace U.Universal.Scenes
             if (transition == null)
                 return;
 
-            transitiionsList.Add(transition);
+            transitionsList.Add(transition);
         }
 
         public static void Apply(params ISceneTransition[] transitions)
@@ -47,7 +47,7 @@ namespace U.Universal.Scenes
         public static void Remove(ISceneTransition transition)
         {
             if (transition != null)
-                transitiionsList.RemoveAll(s => s == transition);
+                transitionsList.RemoveAll(s => s == transition);
         }
 
         public static void Remove(params ISceneTransition[] transitions)
@@ -59,18 +59,18 @@ namespace U.Universal.Scenes
             }
         }
 
-        public static void RemoveAllTransitions()
+        public static void RemoveAllJumps()
         {
-            transitiionsList.Clear();
+            transitionsList.Clear();
         }
 
 
-        public static int CountTransitions => transitiionsList.Count;
+        public static int CountTransitions => transitionsList.Count;
 
 
 
 
-        private static async Task<bool> AwitForDelay(float delay, string cancelString, TransitionMode transitionMode, List<string> relativeList, List<string> absoluteList)
+        private static async Task<bool> AwitForDelay(float delay, string cancelString, JumpMode transitionMode, List<string> relativeList, List<string> absoluteList)
         {
 
             // All Transitions will have a token
@@ -78,23 +78,23 @@ namespace U.Universal.Scenes
                 cancelString = StaticFunctions.NewIdShort() + "";
 
             // Add the cancel token to the list
-            if (transitionMode == TransitionMode.Absolute && !absoluteList.Contains(cancelString))
+            if (transitionMode == JumpMode.Absolute && !absoluteList.Contains(cancelString))
                 absoluteList.Add(cancelString);
-            if (transitionMode == TransitionMode.Relative && !relativeList.Contains(cancelString))
+            if (transitionMode == JumpMode.Relative && !relativeList.Contains(cancelString))
                 relativeList.Add(cancelString);
 
             // Await for the delay
             await StaticFunctions.WaitForSecondsRealtime(_host, delay);
 
             // Check if still the cancell token in the list
-            if (transitionMode == TransitionMode.Absolute)
+            if (transitionMode == JumpMode.Absolute)
             {
                 if (absoluteList.Contains(cancelString))
                     absoluteList.Remove(cancelString);
                 else
                     return false;
             }
-            else if (transitionMode == TransitionMode.Relative)
+            else if (transitionMode == JumpMode.Relative)
             {
                 if (relativeList.Contains(cancelString))
                     relativeList.Remove(cancelString);
@@ -106,7 +106,7 @@ namespace U.Universal.Scenes
 
         }
 
-        private static SceneOperation CancelAwaitForDelay(string cancelString, TransitionMode transitionMode, List<string> relativeList, List<string> absoluteList)
+        private static SceneOperation CancelAwaitForDelay(string cancelString, JumpMode transitionMode, List<string> relativeList, List<string> absoluteList)
         {
             // Create the operation
             var operation = new SceneOperation();
@@ -114,7 +114,7 @@ namespace U.Universal.Scenes
             // Add the cancel token to the list
             if (!string.IsNullOrEmpty(cancelString))
             {
-                if (transitionMode == TransitionMode.Absolute)
+                if (transitionMode == JumpMode.Absolute)
                 {
                     if (absoluteList.Contains(cancelString))
                     {
@@ -122,7 +122,7 @@ namespace U.Universal.Scenes
                         return operation.Successful("1");
                     }
                 }
-                else if(transitionMode == TransitionMode.Relative)
+                else if(transitionMode == JumpMode.Relative)
                 {
                     if (relativeList.Contains(cancelString))
                     {
@@ -135,13 +135,13 @@ namespace U.Universal.Scenes
             return operation.Fails(new Exception("Cant Cancel Transition"));
         }
 
-        private static async Task<SceneOperation> DoTransition(SceneData nextScene, TransitionData def)
+        private static async Task<SceneOperation> DoJump(SceneData nextScene, TransitionData def)
         {
             // Create the operation
             var operation = new SceneOperation();
 
             // Await for the delay
-            if (!await AwitForDelay(def.delay, def.cancelString, def.transitionMode, relativeTransitionsList, absoluteTransitionsList))
+            if (!await AwitForDelay(def.delay, def.cancelString, def.transitionMode, relativeJumpsList, absoluteJumpsList))
                 return operation.Fails(new Exception("AutoLoadScene canceled"));
 
             // Check if is other transition in progres
@@ -151,10 +151,10 @@ namespace U.Universal.Scenes
                 isInTransition = true;
 
             // Clear the relatives transitions
-            relativeTransitionsList.Clear();
+            relativeJumpsList.Clear();
 
             // Search transitions patterns
-            var transitions = SearchTransitions(SceneManager.GetActiveScene(), nextScene, transitiionsList);
+            var transitions = SearchTransitions(SceneManager.GetActiveScene(), nextScene, transitionsList);
 
             // Do the transition
             foreach (var transition in transitions)
@@ -240,60 +240,60 @@ namespace U.Universal.Scenes
 
 
 
-        public static Task<SceneOperation> Transition(SceneData nextScene, TransitionData def)
+        public static Task<SceneOperation> Jump(SceneData nextScene, TransitionData def)
         {
-            return DoTransition(nextScene, def);
+            return DoJump(nextScene, def);
         }
 
-        public static Task<SceneOperation> Transition(string nextSceneName, TransitionData def)
+        public static Task<SceneOperation> Jump(string nextSceneName, TransitionData def)
         {
-            return DoTransition(new SceneData(nextSceneName), def);
+            return DoJump(new SceneData(nextSceneName), def);
         }
 
-        public static Task<SceneOperation> Transition(int nextSceneBuildIndex, TransitionData def)
+        public static Task<SceneOperation> Jump(int nextSceneBuildIndex, TransitionData def)
         {
-            return DoTransition(new SceneData(nextSceneBuildIndex), def);
+            return DoJump(new SceneData(nextSceneBuildIndex), def);
         }
 
-        public static Task<SceneOperation> Transition(SceneData nextScene)
+        public static Task<SceneOperation> Jump(SceneData nextScene)
         {
-            return DoTransition(nextScene, new TransitionData());
+            return DoJump(nextScene, new TransitionData());
         }
 
-        public static Task<SceneOperation> Transition(string nextSceneName)
+        public static Task<SceneOperation> Jump(string nextSceneName)
         {
-            return DoTransition(new SceneData(nextSceneName), new TransitionData());
+            return DoJump(new SceneData(nextSceneName), new TransitionData());
         }
 
-        public static Task<SceneOperation> Transition(int nextSceneBuildIndex)
+        public static Task<SceneOperation> Jump(int nextSceneBuildIndex)
         {
-            return DoTransition(new SceneData(nextSceneBuildIndex), new TransitionData());
+            return DoJump(new SceneData(nextSceneBuildIndex), new TransitionData());
         }
 
-        public static Task<SceneOperation> Transition(TransitionData def)
+        public static Task<SceneOperation> Jump(TransitionData def)
         {
-            return DoTransition(new SceneData(SceneManager.GetActiveScene()), def);
+            return DoJump(new SceneData(SceneManager.GetActiveScene()), def);
         }
 
-        public static Task<SceneOperation> Transition()
+        public static Task<SceneOperation> Jump()
         {
-            return DoTransition(new SceneData(SceneManager.GetActiveScene()), new TransitionData());
+            return DoJump(new SceneData(SceneManager.GetActiveScene()), new TransitionData());
         }
 
 
 
-        public static SceneOperation CancelTransition(string cancelString, TransitionMode transitionMode)
+        public static SceneOperation CancelJump(string cancelString, JumpMode transitionMode)
         {
-            return CancelAwaitForDelay(cancelString, transitionMode, relativeTransitionsList, absoluteTransitionsList);
+            return CancelAwaitForDelay(cancelString, transitionMode, relativeJumpsList, absoluteJumpsList);
         }
 
-        public static void CancelAllTransitions(TransitionMode transitionMode)
+        public static void CancelAllJumps(JumpMode transitionMode)
         {
 
-            if (transitionMode == TransitionMode.Absolute)
-                absoluteTransitionsList.Clear();
-            else if (transitionMode == TransitionMode.Relative)
-                relativeTransitionsList.Clear();
+            if (transitionMode == JumpMode.Absolute)
+                absoluteJumpsList.Clear();
+            else if (transitionMode == JumpMode.Relative)
+                relativeJumpsList.Clear();
 
         }
 

@@ -12,7 +12,7 @@ namespace U.Universal.Scenes
         public float delay = 0f;
         public float startDelay = 0f;
         public float endDelay = 0f;
-        public TransitionMode transitionMode = TransitionMode.Relative;
+        public JumpMode transitionMode = JumpMode.Relative;
         public string cancelString = "";
     }
 }

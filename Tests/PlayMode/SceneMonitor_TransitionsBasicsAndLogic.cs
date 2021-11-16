@@ -20,7 +20,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
         // All test must start in intro scene
         SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Single);
         SceneMonitor.RemoveAllSelectors();
-        SceneMonitor.RemoveAllTransitions();
+        SceneMonitor.RemoveAllJumps();
     }
 
 
@@ -33,7 +33,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
         
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu").Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump("Menu").Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -47,7 +47,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
         
-        SceneMonitor.Transition("Menu", new TransitionData { delay = 3, }).Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump("Menu", new TransitionData { delay = 3, }).Then(Reject: e => Debug.LogError(e));
         
         yield return new WaitForSecondsRealtime(2);
 
@@ -66,10 +66,10 @@ public class SceneMonitor_TransitionsBasicsAndLogic
         
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cargaMenu",
         }).Then(Reject: e => Debug.LogError(e));
 
@@ -77,7 +77,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         Assert.AreEqual("Intro", SceneManager.GetActiveScene().name);
 
-        SceneMonitor.CancelTransition("cargaMenu", SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelJump("cargaMenu", SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(2);
         
@@ -92,16 +92,16 @@ public class SceneMonitor_TransitionsBasicsAndLogic
         
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Level1").Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump("Level1").Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -116,16 +116,16 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Level1").Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump("Level1").Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
         Assert.AreEqual("Menu", SceneManager.GetActiveScene().name);
@@ -139,16 +139,16 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.CancelTransition("cargaMenu", SceneMonitor.TransitionMode.Absolute);
+        SceneMonitor.CancelJump("cargaMenu", SceneMonitor.JumpMode.Absolute);
 
         yield return new WaitForSecondsRealtime(2);
         Assert.AreEqual("Intro", SceneManager.GetActiveScene().name);
@@ -162,10 +162,10 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
@@ -173,7 +173,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         Assert.AreEqual("Intro", SceneManager.GetActiveScene().name);
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -188,10 +188,10 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
@@ -199,7 +199,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         Assert.AreEqual("Intro", SceneManager.GetActiveScene().name);
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -214,10 +214,10 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cargaMenu"
         }).Then(Reject: e => Debug.LogError(e));
 
@@ -225,7 +225,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         Assert.AreEqual("Intro", SceneManager.GetActiveScene().name);
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Absolute);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Absolute);
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -239,15 +239,15 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
         
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
         }).Then(Reject: e => Debug.LogError(e));
@@ -272,20 +272,20 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(3.1f);
@@ -308,16 +308,16 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute
+            transitionMode = SceneMonitor.JumpMode.Absolute
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
         }).Then(Reject: e => Debug.LogError(e));
@@ -342,23 +342,23 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(3.1f);
 
@@ -380,23 +380,23 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(3.1f);
 
@@ -418,23 +418,23 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
 
-        SceneMonitor.CancelAllTransitions( SceneMonitor.TransitionMode.Absolute);
+        SceneMonitor.CancelAllJumps( SceneMonitor.JumpMode.Absolute);
 
         yield return new WaitForSecondsRealtime(3.1f);
 
@@ -456,31 +456,31 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 2f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Game", new TransitionData
+        SceneMonitor.Jump("Game", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
 
-        SceneMonitor.CancelTransition("cancelString", SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelJump("cancelString", SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(3.1f);
 
@@ -502,32 +502,32 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 2f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Game", new TransitionData
+        SceneMonitor.Jump("Game", new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Menu1", new TransitionData
+        SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         }).Then(Reject: e => Debug.LogError(e));
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cancelString",
         }).Then(Reject: e => Debug.LogError(e));
 
 
-        SceneMonitor.CancelTransition("cancelString", SceneMonitor.TransitionMode.Absolute);
+        SceneMonitor.CancelJump("cancelString", SceneMonitor.JumpMode.Absolute);
 
         yield return new WaitForSecondsRealtime(3.1f);
 
@@ -551,7 +551,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition().Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump().Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -567,7 +567,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition(new TransitionData { delay = 3, }).Then(Reject: e => Debug.LogError(e));
+        SceneMonitor.Jump(new TransitionData { delay = 3, }).Then(Reject: e => Debug.LogError(e));
 
         yield return new WaitForSecondsRealtime(2);
 
@@ -585,10 +585,10 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         yield return new WaitForSecondsRealtime(2);
 
-        SceneMonitor.Transition(new TransitionData
+        SceneMonitor.Jump(new TransitionData
         {
             delay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
             cancelString = "cargaMenu",
         }).Then(Reject: e => Debug.LogError(e));
 
@@ -596,7 +596,7 @@ public class SceneMonitor_TransitionsBasicsAndLogic
 
         Assert.IsFalse(go == null);
 
-        SceneMonitor.CancelTransition("cargaMenu", SceneMonitor.TransitionMode.Relative);
+        SceneMonitor.CancelJump("cargaMenu", SceneMonitor.JumpMode.Relative);
 
         yield return new WaitForSecondsRealtime(2);
         Assert.IsTrue(go == null);
@@ -609,26 +609,26 @@ public class SceneMonitor_TransitionsBasicsAndLogic
     {
         yield return new WaitForSecondsRealtime(2);
 
-        var operationOne = SceneMonitor.Transition("Menu", new TransitionData
+        var operationOne = SceneMonitor.Jump("Menu", new TransitionData
         {
             delay = 3f,
             startDelay = 3,
             endDelay = 3,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         });
-        var operationTwo = SceneMonitor.Transition("Menu1", new TransitionData
+        var operationTwo = SceneMonitor.Jump("Menu1", new TransitionData
         {
             delay = 4f,
             startDelay = 3,
             endDelay = 3,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         });
-        var operationThree = SceneMonitor.Transition("Level1", new TransitionData
+        var operationThree = SceneMonitor.Jump("Level1", new TransitionData
         {
             delay = 5f,
             startDelay = 3,
             endDelay = 3,
-            transitionMode = SceneMonitor.TransitionMode.Absolute,
+            transitionMode = SceneMonitor.JumpMode.Absolute,
         });
 
         yield return new WaitForSecondsRealtime(3.1f);

@@ -21,7 +21,7 @@ public class SceneMonitor_SelectorsAndTransitions
     {
         SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Single);
         SceneMonitor.RemoveAllSelectors();
-        SceneMonitor.RemoveAllTransitions();
+        SceneMonitor.RemoveAllJumps();
     }
 
     class LocalTransition : ISceneTransition
@@ -88,7 +88,7 @@ public class SceneMonitor_SelectorsAndTransitions
                     Debug.LogAssertion("Intro Set Active");
 
                     // Transition
-                    SceneMonitor.Transition("Menu", new TransitionData
+                    SceneMonitor.Jump("Menu", new TransitionData
                     {
                         delay = 2f,
                         startDelay = 3f,

@@ -15,7 +15,7 @@ public class SceneMonitor_TransitionsSelectors
         // All test must start in intro scene
         SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Single);
         SceneMonitor.RemoveAllSelectors();
-        SceneMonitor.RemoveAllTransitions();
+        SceneMonitor.RemoveAllJumps();
     }
 
 
@@ -48,7 +48,7 @@ public class SceneMonitor_TransitionsSelectors
         // Start the transition froom Intro to Menu
         LogAssert.Expect(LogType.Assert, "* to *");  // -> Trn
         LogAssert.Expect(LogType.Assert, "* to * Two");  // -> Trn
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -62,7 +62,7 @@ public class SceneMonitor_TransitionsSelectors
         // Start the transition froom Menu to Level1
         LogAssert.Expect(LogType.Assert, "* to *");  // -> Trn
         LogAssert.Expect(LogType.Assert, "* to * Two");  // -> Trn
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -101,7 +101,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Intro to Menu
         LogAssert.Expect(LogType.Assert, "Intro to Menu");  // -> Trn
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -114,7 +114,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Menu to Level1
         LogAssert.Expect(LogType.Assert, "Menu to Level1");  // -> Trn
-        SceneMonitor.Transition("Level1", new TransitionData
+        SceneMonitor.Jump("Level1", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -154,7 +154,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Intro to Menu
         LogAssert.Expect(LogType.Assert, "Intro to >0");  // -> Trn
-        SceneMonitor.Transition(2, new TransitionData
+        SceneMonitor.Jump(2, new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -167,7 +167,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Menu to Level1
         LogAssert.Expect(LogType.Assert, ">0 to #3");  // -> Trn
-        SceneMonitor.Transition(3, new TransitionData
+        SceneMonitor.Jump(3, new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -206,7 +206,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Intro to Menu
         LogAssert.Expect(LogType.Assert, ".*Tests/PlayMode/Intro to .*Tests/PlayMode/Menu");  // -> Trn
-        SceneMonitor.Transition(new SceneData("Menu", "U.Universal.Scenes-v1.0.1/Tests/PlayMode/Menu"), new TransitionData
+        SceneMonitor.Jump(new SceneData("Menu", "U.Universal.Scenes-v1.0.1/Tests/PlayMode/Menu"), new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -219,7 +219,7 @@ public class SceneMonitor_TransitionsSelectors
 
         // Start the transition froom Menu to Level1
         LogAssert.Expect(LogType.Assert, ".*Tests/PlayMode/Menu to .*Tests/PlayMode/Level*");  // -> Trn
-        SceneMonitor.Transition(new SceneData("Level1", "U.Universal.Scenes-v1.0.1/Tests/PlayMode/Level1"), new TransitionData
+        SceneMonitor.Jump(new SceneData("Level1", "U.Universal.Scenes-v1.0.1/Tests/PlayMode/Level1"), new TransitionData
         {
             startDelay = 3,
             endDelay = 3,

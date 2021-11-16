@@ -22,7 +22,7 @@ public class SceneMonitor_Selectors
     public void SetUp() 
     {
         SceneMonitor.RemoveAllSelectors();
-        SceneMonitor.RemoveAllTransitions();
+        SceneMonitor.RemoveAllJumps();
         SceneMonitor.Disable();
     }
 

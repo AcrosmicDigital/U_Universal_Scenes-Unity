@@ -20,7 +20,7 @@ public class SceneMonitor_TransitionFunctionsAndTime
         // All test must start in intro scene
         SceneManager.LoadSceneAsync("Intro", LoadSceneMode.Single);
         SceneMonitor.RemoveAllSelectors();
-        SceneMonitor.RemoveAllTransitions();
+        SceneMonitor.RemoveAllJumps();
     }
 
 
@@ -78,7 +78,7 @@ public class SceneMonitor_TransitionFunctionsAndTime
 
 
         // Start the transition
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -163,7 +163,7 @@ public class SceneMonitor_TransitionFunctionsAndTime
 
 
         // Start the transition
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -190,7 +190,7 @@ public class SceneMonitor_TransitionFunctionsAndTime
 
 
         // Start the transition
-        SceneMonitor.Transition(new TransitionData
+        SceneMonitor.Jump(new TransitionData
         {
             startDelay = 3,
             endDelay = 3,
@@ -219,11 +219,11 @@ public class SceneMonitor_TransitionFunctionsAndTime
         var transition = new LocalTransition();
         SceneMonitor.Apply(transition);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3f,
             endDelay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
 
         LogAssert.Expect(LogType.Assert, "Set Up");
@@ -247,11 +247,11 @@ public class SceneMonitor_TransitionFunctionsAndTime
         var transition = new LocalTransitionValues();
         SceneMonitor.Apply(transition);
 
-        SceneMonitor.Transition("Menu", new TransitionData
+        SceneMonitor.Jump("Menu", new TransitionData
         {
             startDelay = 3f,
             endDelay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
 
         LogAssert.ignoreFailingMessages = true;
@@ -273,11 +273,11 @@ public class SceneMonitor_TransitionFunctionsAndTime
         var transition = new LocalTransition();
         SceneMonitor.Apply(transition);
 
-        SceneMonitor.Transition(new TransitionData
+        SceneMonitor.Jump(new TransitionData
         {
             startDelay = 3f,
             endDelay = 3f,
-            transitionMode = SceneMonitor.TransitionMode.Relative,
+            transitionMode = SceneMonitor.JumpMode.Relative,
         }).Then(Reject: e => Debug.LogError(e));
 
         LogAssert.Expect(LogType.Assert, "Set Up");
