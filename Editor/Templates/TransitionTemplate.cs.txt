@@ -19,8 +19,8 @@ public static partial class Uscenes
                 //setUpReady = () => Debug.Log("Uscenes: setUpReady"),
                 //loadProgres = (p) => Debug.Log("Uscenes: loadProgres = " + p),
                 //tearDown = () => Debug.Log("Uscenes: tearDown"),
-                //tearDownReady = () => Debug.Log("Uscenes: tearDownReady"),
                 //tearDownProgress = (p) => Debug.Log("Uscenes: tearDownProgress = " + p),
+                //tearDownReady = () => Debug.Log("Uscenes: tearDownReady"),
             },
             */
 

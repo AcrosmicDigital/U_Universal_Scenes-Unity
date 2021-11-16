@@ -1,0 +1,29 @@
+using System.Threading.Tasks;
+using U.Universal.Scenes;
+
+public static partial class Uscenes
+{
+    public static partial class Jumps
+    {
+
+        public static class Scenes
+        {
+            //public static string #SCRIPTNAME# => "SceneName";
+
+        }
+
+
+        /*
+        public static Task<SceneOperation> #SCRIPTNAME#() =>
+            SceneMonitor.Jump("Intro", new TransitionData
+            {
+                //delay = 2,
+                //startDelay = 1,
+                //endDelay = 1,
+                //cancelString = "Tr",
+                //transitionMode = SceneMonitor.JumpMode.Absolute,
+            });
+        */
+
+    }
+}
