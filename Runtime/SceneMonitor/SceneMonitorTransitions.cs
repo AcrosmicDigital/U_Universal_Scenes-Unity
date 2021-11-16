@@ -240,6 +240,84 @@ namespace U.Universal.Scenes
 
 
 
+
+        private static async Task<SceneOperation> DoLoad(SceneData nextScene, Action<float> LoadProgres)
+        {
+            // Create the operation
+            var operation = new SceneOperation();
+
+            try
+            {
+                
+                // LoadProgess, load and unload
+                if (!String.IsNullOrEmpty(nextScene.path))
+                {
+                    await StaticFunctions.LoadSceneAsync(_host, nextScene.path, LoadSceneMode.Additive, LoadProgres);
+                }
+                else if (nextScene.buildIndex >= 0)
+                {
+                    await StaticFunctions.LoadSceneAsync(_host, nextScene.buildIndex, LoadSceneMode.Additive, LoadProgres);
+                }
+                else
+                {
+                    await StaticFunctions.LoadSceneAsync(_host, nextScene.name, LoadSceneMode.Additive, LoadProgres);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Load Error: " + e);
+                return operation.Fails(e);
+            }
+
+            isInTransition = false;
+
+            return operation.Successful("1");
+
+        }
+
+
+
+
+        private static async Task<SceneOperation> DoUnload(SceneData unloadScene, Action UnloadProgres)
+        {
+            // Create the operation
+            var operation = new SceneOperation();
+
+            try
+            {
+
+                // LoadProgess, load and unload
+                if (!String.IsNullOrEmpty(unloadScene.path))
+                {
+                    await StaticFunctions.UnloadSceneAsync(_host, unloadScene.path, UnloadProgres);
+                }
+                else if (unloadScene.buildIndex >= 0)
+                {
+                    await StaticFunctions.UnloadSceneAsync(_host, unloadScene.buildIndex, UnloadProgres);
+                }
+                else
+                {
+                    await StaticFunctions.UnloadSceneAsync(_host, unloadScene.name, UnloadProgres);
+                }
+
+            }
+            catch (Exception e)
+            {
+                Debug.LogError("Unload Error: " + e);
+                return operation.Fails(e);
+            }
+
+            isInTransition = false;
+
+            return operation.Successful("1");
+
+        }
+
+
+
+
+
         public static Task<SceneOperation> Jump(SceneData nextScene, TransitionData def)
         {
             return DoJump(nextScene, def);
@@ -297,6 +375,73 @@ namespace U.Universal.Scenes
 
         }
 
+
+
+        
+
+        public static Task<SceneOperation> Load(SceneData nextScene, Action<float> LoadProgres)
+        {
+            return DoLoad(nextScene, LoadProgres);
+        }
+
+        public static Task<SceneOperation> Load(string nextSceneName, Action<float> LoadProgres)
+        {
+            return DoLoad(new SceneData(nextSceneName), LoadProgres);
+        }
+
+        public static Task<SceneOperation> Load(int nextSceneBuildIndex, Action<float> LoadProgres)
+        {
+            return DoLoad(new SceneData(nextSceneBuildIndex), LoadProgres);
+        }
+
+        public static Task<SceneOperation> Load(SceneData nextScene)
+        {
+            return DoLoad(nextScene, (p) => { });
+        }
+
+        public static Task<SceneOperation> Load(string nextSceneName)
+        {
+            return DoLoad(new SceneData(nextSceneName), (p) => { });
+        }
+
+        public static Task<SceneOperation> Load(int nextSceneBuildIndex)
+        {
+            return DoLoad(new SceneData(nextSceneBuildIndex), (p) => { });
+        }
+
+
+
+
+
+        public static Task<SceneOperation> Unload(SceneData nextScene, Action UnloadProgres)
+        {
+            return DoUnload(nextScene, UnloadProgres);
+        }
+
+        public static Task<SceneOperation> Unload(string nextSceneName, Action UnloadProgres)
+        {
+            return DoUnload(new SceneData(nextSceneName), UnloadProgres);
+        }
+
+        public static Task<SceneOperation> Unload(int nextSceneBuildIndex, Action UnloadProgres)
+        {
+            return DoUnload(new SceneData(nextSceneBuildIndex), UnloadProgres);
+        }
+
+        public static Task<SceneOperation> Unload(SceneData nextScene)
+        {
+            return DoUnload(nextScene, () => { });
+        }
+
+        public static Task<SceneOperation> Unload(string nextSceneName)
+        {
+            return DoUnload(new SceneData(nextSceneName), () => { });
+        }
+
+        public static Task<SceneOperation> Unload(int nextSceneBuildIndex)
+        {
+            return DoUnload(new SceneData(nextSceneBuildIndex), () => { });
+        }
 
 
 
