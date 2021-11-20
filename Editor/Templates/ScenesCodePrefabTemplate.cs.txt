@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public static partial class CodePrefabs
+public static partial class CodePrefabs  // Dir: Assets/Scripts/CodePrefabs/*.cs
 {
     public static partial class Scenes
     {

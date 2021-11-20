@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using U.Universal.Scenes;
 
-public static partial class Uscenes
+public static partial class Uscenes  // Dir: Assets/Scripts/Uscenes/Jumps.cs
 {
     public static partial class Jumps
     {

@@ -1,7 +1,7 @@
 using UnityEngine;
 using U.Universal.Scenes;
 
-public static partial class GameController
+public static partial class Controller  // Dir: Assets/Scripts/Controllers/ScenesController.cs
 {
     public static partial class Scenes
     {

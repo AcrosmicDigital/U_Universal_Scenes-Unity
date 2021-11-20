@@ -1,0 +1,9 @@
+public static partial class Env  // Dir: Assets/Scripts/Env/Scenes.cs
+{
+    public static partial class Scenes
+    {
+        //public static string _Main => "_Main";
+        //public static string Intro => "Intro";
+
+    }
+}
