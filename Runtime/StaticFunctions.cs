@@ -242,5 +242,32 @@ namespace U.Universal.Scenes
 
         }
 
+        internal static async Task UnloadSceneAsync(GameObject gameObject, Scene scene, Action whileUnload = null)
+        {
+
+            IEnumerator Helper()
+            {
+                // Carga de forma aditiva la nueva escena y la guarda en una variable
+                AsyncOperation loadOperation = SceneManager.UnloadSceneAsync(scene);
+
+                // Mientras la escena se carga espera y ejecuta el delagate
+                while (!loadOperation.isDone)
+                {
+                    try
+                    {
+                        whileUnload?.Invoke();
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.LogError("Uroutine.LoadSceneAsync: Error in whileLoad delegate, scene will be loaded anyway, " + e);
+                    }
+                    yield return null;
+                }
+            }
+
+            await Helper().WaitAsTask(gameObject);
+
+        }
+
     }
 }

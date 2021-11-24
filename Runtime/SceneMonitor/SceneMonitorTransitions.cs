@@ -174,8 +174,24 @@ namespace U.Universal.Scenes
                 foreach (var transition in transitions)
                     ExecuteDelegate(transition.SetUpReady, "TransitionSetUpReady");
 
-                // Load the new scene and if load download the prev
+                // Save the current active scene as prev scene
                 var prevScene = SceneManager.GetActiveScene();
+
+                // Use the transition scene
+                try
+                {
+                    await StaticFunctions.LoadSceneAsync(_host, "Assets/Scripts/Uscenes/Transition.unity", LoadSceneMode.Additive);
+                }
+                catch (Exception e)
+                {
+                    Debug.LogError("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path Assets/Scripts/Uscenes/Transition.unity is added to Build Settings, can be an empty scene, " + e);
+                    return operation.Fails(new Exception("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path Assets/Scripts/Uscenes/Transition.unity is added to Build Settings, can be an empty scene, " + e));
+                }
+
+                SceneManager.SetActiveScene(SceneManager.GetSceneByPath("Assets/Scripts/Uscenes/Transition.unity"));
+
+                // Unload Current Active Scene
+                await StaticFunctions.UnloadSceneAsync(_host, prevScene);
 
                 // LoadProgess, load and unload
                 if (!String.IsNullOrEmpty(nextScene.path))
@@ -206,9 +222,9 @@ namespace U.Universal.Scenes
                     });
                     SceneManager.SetActiveScene(SceneManager.GetSceneByName(nextScene.name));
                 }
-                
-                // Unload the prev
-                await StaticFunctions.UnloadSceneAsync(_host, prevScene.name);
+
+                // Unload the transition scene
+                await StaticFunctions.UnloadSceneAsync(_host, SceneManager.GetSceneByPath("Assets/Scripts/Uscenes/Transition.unity"));
 
                 // TearDown
                 foreach (var transition in transitions)
@@ -290,14 +306,26 @@ namespace U.Universal.Scenes
                 // LoadProgess, load and unload
                 if (!String.IsNullOrEmpty(unloadScene.path))
                 {
+                    // Check if is loaded
+                    var scene = SceneManager.GetSceneByPath("Assets/" + unloadScene.path + ".unity");
+                    if (scene == null) return operation.Successful("1");
+
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.path, UnloadProgres);
                 }
                 else if (unloadScene.buildIndex >= 0)
                 {
+                    // Check if is loaded
+                    var scene = SceneManager.GetSceneByBuildIndex(unloadScene.buildIndex);
+                    if (scene == null) return operation.Successful("1");
+
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.buildIndex, UnloadProgres);
                 }
                 else
                 {
+                    // Check if is loaded
+                    var scene = SceneManager.GetSceneByName(unloadScene.name);
+                    if (scene == null) return operation.Successful("1");
+
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.name, UnloadProgres);
                 }
 
