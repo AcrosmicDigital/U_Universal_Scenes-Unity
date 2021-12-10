@@ -308,7 +308,8 @@ namespace U.Universal.Scenes
                 {
                     // Check if is loaded
                     var scene = SceneManager.GetSceneByPath("Assets/" + unloadScene.path + ".unity");
-                    if (scene == null) return operation.Successful("1");
+                    //if (scene == null) return operation.Successful("1");
+                    if (!scene.isLoaded) return operation.Successful("1");
 
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.path, UnloadProgres);
                 }
@@ -316,7 +317,8 @@ namespace U.Universal.Scenes
                 {
                     // Check if is loaded
                     var scene = SceneManager.GetSceneByBuildIndex(unloadScene.buildIndex);
-                    if (scene == null) return operation.Successful("1");
+                    //if (scene == null) return operation.Successful("1");
+                    if (!scene.isLoaded) return operation.Successful("1");
 
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.buildIndex, UnloadProgres);
                 }
@@ -324,7 +326,8 @@ namespace U.Universal.Scenes
                 {
                     // Check if is loaded
                     var scene = SceneManager.GetSceneByName(unloadScene.name);
-                    if (scene == null) return operation.Successful("1");
+                    //if (scene == null) return operation.Successful("1");
+                    if (!scene.isLoaded) return operation.Successful("1");
 
                     await StaticFunctions.UnloadSceneAsync(_host, unloadScene.name, UnloadProgres);
                 }
