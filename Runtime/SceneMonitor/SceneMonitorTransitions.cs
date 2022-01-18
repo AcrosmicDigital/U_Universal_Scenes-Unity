@@ -180,15 +180,15 @@ namespace U.Universal.Scenes
                 // Use the transition scene
                 try
                 {
-                    await StaticFunctions.LoadSceneAsync(_host, "Assets/Scripts/Uscenes/Transition.unity", LoadSceneMode.Additive);
+                    await StaticFunctions.LoadSceneAsync(_host, TransitionScenePath, LoadSceneMode.Additive);
                 }
                 catch (Exception e)
                 {
-                    Debug.LogError("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path Assets/Scripts/Uscenes/Transition.unity is added to Build Settings, can be an empty scene, " + e);
-                    return operation.Fails(new Exception("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path Assets/Scripts/Uscenes/Transition.unity is added to Build Settings, can be an empty scene, " + e));
+                    Debug.LogError("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path " + TransitionScenePath + " is added to Build Settings, can be an empty scene, " + e);
+                    return operation.Fails(new Exception("SceneMonitor: Cant load Transition Scene, please ensure that a scene in this path " + TransitionScenePath + " is added to Build Settings, can be an empty scene, " + e));
                 }
 
-                SceneManager.SetActiveScene(SceneManager.GetSceneByPath("Assets/Scripts/Uscenes/Transition.unity"));
+                SceneManager.SetActiveScene(SceneManager.GetSceneByPath(TransitionScenePath));
 
                 // Unload Current Active Scene
                 await StaticFunctions.UnloadSceneAsync(_host, prevScene);
@@ -224,7 +224,7 @@ namespace U.Universal.Scenes
                 }
 
                 // Unload the transition scene
-                await StaticFunctions.UnloadSceneAsync(_host, SceneManager.GetSceneByPath("Assets/Scripts/Uscenes/Transition.unity"));
+                await StaticFunctions.UnloadSceneAsync(_host, SceneManager.GetSceneByPath(TransitionScenePath));
 
                 // TearDown
                 foreach (var transition in transitions)

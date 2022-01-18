@@ -33,6 +33,9 @@ namespace U.Universal.Scenes
         // </Host>
 
 
+        // Trsnsition scene path
+        public static string TransitionScenePath => "Assets/Scenes/_Transition.unity";
+
 
         private static void ExecuteDelegate(Action action, string name)
         {
