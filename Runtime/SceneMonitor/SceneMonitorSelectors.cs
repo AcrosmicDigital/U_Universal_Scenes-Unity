@@ -162,6 +162,8 @@ namespace U.Universal.Scenes
 
         private static void OnSceneLoad(Scene scene, LoadSceneMode loadMode)
         {
+            // If is the transition scene just return
+            if (scene.path == TransitionScenePath) return;
 
             // Search for the scene in scenes def list
             var selectors = SearchSelectors(scene, selectorsList);
@@ -182,7 +184,9 @@ namespace U.Universal.Scenes
 
         private static void OnSceneUnload(Scene scene)
         {
-            
+            // If is the transition scene just return
+            if (scene.path == TransitionScenePath) return;
+
             // Search for the scene in scenes def list
             var selectors = SearchSelectors(scene, selectorsList);
             if (selectors == null) 
@@ -206,7 +210,7 @@ namespace U.Universal.Scenes
         }
         private static void OnActiveSceneChangedNullable(Scene? currentScene, Scene nextScene)
         {
-            
+
             // Search for the scene in scenes def list
             var selectorsNexts = SearchSelectors(nextScene, selectorsList);
             var selectorsCurrents = new ISceneSelector[0];
@@ -219,6 +223,9 @@ namespace U.Universal.Scenes
                 if (usene == null)
                     continue;
 
+                // If is the transition scene just dont execute
+                if (((Scene)currentScene).path == TransitionScenePath) continue;
+
                 ExecuteDelegate(usene.OnSetInactive, (Scene)currentScene, "onSetAsInactive of Scene: " + usene.Pattern());
 
             }
@@ -228,6 +235,9 @@ namespace U.Universal.Scenes
             {
                 if (usene == null)
                     continue;
+
+                // If is the transition scene just dont execute
+                if (nextScene.path == TransitionScenePath) continue;
 
                 ExecuteDelegate(usene.OnSetActive, nextScene, "onSetAsActive of Scene: " + usene.Pattern());
 
