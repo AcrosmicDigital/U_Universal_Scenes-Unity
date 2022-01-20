@@ -1,74 +1,45 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using UnityEditor;
-using System.Reflection;
-using System;
-using System.Linq;
-using U.Universal.Scenes;
-using System.IO;
+using static U.Universal.Scenes.Editor.UE;
 
-
-#if UNITY_EDITOR
-
-public class CreateEnvScenesFileMenuButton : EditorWindow
+namespace U.Universal.Scenes.Editor
 {
-
-    private static string EnvFolderName => "/Scripts/Env/";
-    private static string ScenesFileName => "Scenes.cs";
-    private static string FormatLog(string text) => "UniversalScenes: " + text;
-
-
-    [MenuItem("U/Universal Scenes/Create Scenes File")]
-    public static void ShowWindow()
+    public class CreateEnvScenesFileMenuButton : EditorWindow
     {
 
-        // Check if Env folder exist or create it
-        if (!Directory.Exists(Application.dataPath + EnvFolderName))
+        #region EnvScenes File
+        private static string FolderName => "/Scripts/Env/";
+        private static string FileName => "Scenes.cs";
+        private readonly static string[] file =
         {
-            Debug.Log(FormatLog("Creating Assets/" + EnvFolderName + " directory"));
-            Directory.CreateDirectory(Application.dataPath + EnvFolderName);
-        }
-        else
-        {
-            Debug.Log(FormatLog("Assets/" + EnvFolderName + " already exist"));
-        }
+            "",
+            "public static partial class Env",
+            "{",
+            "    public static partial class Scenes",
+            "    {",
+            "        //public static string _Main => " + quote + "_Main" + quote + ";",
+            "        //public static string Level(int num) => "+quote+"Level"+quote+" + num;",
+            "",
+            "    }",
+            "}",
+        };
+        #endregion EnvScenes File
 
-        // check if scenes file exist or create it
-        if(!File.Exists(Application.dataPath + EnvFolderName + ScenesFileName))
-        {
-            Debug.Log(FormatLog("Creating Assets/" + EnvFolderName + ScenesFileName +" file"));
 
-            // Write the file
-            File.WriteAllLines(Application.dataPath + EnvFolderName + ScenesFileName, file); // This should be async when is available
+
+        private static string FormatLog(string text) => "UniversalScenes: " + text;
+
+
+        [MenuItem("Universal/Scenes/Create/Scenes File")]
+        public static void ShowWindow()
+        {
+
+            // Create files
+            CreateFile(FolderName, FileName, file, FormatLog);
 
             // Compile
             AssetDatabase.Refresh();
-        }
-        else
-        {
-            Debug.LogError(FormatLog("Assets/" + EnvFolderName + ScenesFileName + " already exist"));
+
         }
 
     }
-
-    const string quote = "\"";
-    static string[] file =
-    {
-        "",
-        "public static partial class Env",
-        "{",
-        "    public static partial class Scenes",
-        "    {",
-        "        //public static string _Main => " + quote + "_Main" + quote + ";",
-        "        //public static string Level(int num) => "+quote+"Level"+quote+" + num;",
-        "",
-        "    }",
-        "}",
-    };
-
 }
-
-
-
-#endif

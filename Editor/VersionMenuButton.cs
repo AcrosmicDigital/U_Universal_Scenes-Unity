@@ -1,20 +1,17 @@
 using UnityEngine;
 using UnityEditor;
 
-
-#if UNITY_EDITOR
-
-public class VersionMenuButton : EditorWindow
+namespace U.Universal.Scenes.Editor
 {
-
-    [MenuItem("U/Universal Scenes/Version")]
-    public static void PrintVersion()
+    public class VersionMenuButton : EditorWindow
     {
 
-        Debug.Log(" U Framework: Universal Scenes v1.0.0 for Unity");
+        [MenuItem("Universal/Scenes/Version")]
+        public static void PrintVersion()
+        {
 
+            Debug.Log(" U Framework: Universal Scenes v1.0.0 for Unity");
+
+        }
     }
 }
-
-
-#endif

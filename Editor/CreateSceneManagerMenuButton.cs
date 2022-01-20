@@ -1,0 +1,92 @@
+using UnityEditor;
+using static U.Universal.Scenes.Editor.UE;
+
+namespace U.Universal.Scenes.Editor
+{
+    public class CreateSceneManagerMenuButton : EditorWindow
+    {
+
+        #region TransitionClass File
+        private static string FolderName => "/Scripts/ScenesManagment/";
+        private static string DefaultFileName => "NewSceneManager";
+        static string[] file(string fileName) => new string[]
+        {
+            "using UnityEngine;",
+            "",
+            "/// <summary>",
+            "/// Add this script to any GameObject in the scene",
+            "/// </summary>",
+            "public class "+fileName+" : MonoBehaviour",
+            "{",
+            "",
+            "    #region Manager DONT MODIFY THIS REGION",
+            "",
+            "    public static "+fileName+" _;",
+            "    public static "+fileName+" S",
+            "    {",
+            "        get",
+            "        {",
+            "            if (_ == null) _ = FindManagerInScene();",
+            "",
+            "            // If still null throw exception",
+            "            if (_ == null) throw new System.NullReferenceException("+quote+""+fileName+": Cant find a valid GameObject with manager script"+quote+");",
+            "",
+            "            return _;",
+            "        }",
+            "    }",
+            "",
+            "    // This function can be assigned as reference from editor",
+            "    public void PlayNow()",
+            "    {",
+            "        if (Env.Vars.devStage == Env.Vars.DevStages.Dev) S.PlayDev();",
+            "        else if (Env.Vars.devStage == Env.Vars.DevStages.Prod) S.PlayProd();",
+            "    }",
+            "",
+            "    // Tis function only can be called by code",
+            "    public static void Play() => S.PlayNow();",
+            "",
+            "    #endregion Manager DONT MODIFY THIS REGION",
+            "",
+            "",
+            "    // Function to find the scene manager, you can modify",
+            "    private static "+fileName+" FindManagerInScene()",
+            "    {",
+            "        return GameObject.FindGameObjectWithTag("+quote+"SM"+quote+").GetComponent<"+fileName+">();",
+            "    }",
+            "",
+            "",
+            "    // What to do in Dev mode",
+            "    private void PlayDev()",
+            "    {",
+            "        // ...",
+            "    }",
+            "",
+            "    // What to do in Prod mode",
+            "    private void PlayProd()",
+            "    {",
+            "        // ...",
+            "    }",
+            "",
+            "}",
+        };
+        #endregion TransitionClass File
+
+
+
+        private static string FormatLog(string text) => "UniversalScenes: " + text;
+
+
+        [MenuItem("Universal/Scenes/Create/Scene Manager")]
+        public static void ShowWindow()
+        {
+
+            // Create files
+            CreateFileWithSaveFilePanel(FolderName, DefaultFileName, file, FormatLog);
+
+            // Compile
+            AssetDatabase.Refresh();
+
+        }
+
+    }
+}
