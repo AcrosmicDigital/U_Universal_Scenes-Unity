@@ -21,7 +21,7 @@ namespace U.Universal.Scenes.Editor
             "",
             "    #region Manager DONT MODIFY THIS REGION",
             "",
-            "    public static "+fileName+" _;",
+            "    private static "+fileName+" _;",
             "    public static "+fileName+" S",
             "    {",
             "        get",
@@ -35,15 +35,12 @@ namespace U.Universal.Scenes.Editor
             "        }",
             "    }",
             "",
-            "    // This function can be assigned as reference from editor",
-            "    public void PlayNow()",
+            "    private void Start()",
             "    {",
+            "        // If error appear here is because must be a devStage class , use Create Startup Files to fix this error",
             "        if (Env.Vars.devStage == Env.Vars.DevStages.Dev) S.PlayDev();",
             "        else if (Env.Vars.devStage == Env.Vars.DevStages.Prod) S.PlayProd();",
             "    }",
-            "",
-            "    // Tis function only can be called by code",
-            "    public static void Play() => S.PlayNow();",
             "",
             "    #endregion Manager DONT MODIFY THIS REGION",
             "",
@@ -53,6 +50,10 @@ namespace U.Universal.Scenes.Editor
             "    {",
             "        return GameObject.FindGameObjectWithTag("+quote+"SM"+quote+").GetComponent<"+fileName+">();",
             "    }",
+            "",
+            "",
+            "    // Props",
+            "    // ...",
             "",
             "",
             "    // What to do in Dev mode",
@@ -81,7 +82,7 @@ namespace U.Universal.Scenes.Editor
         {
 
             // Create files
-            CreateFileWithSaveFilePanel(FolderName, DefaultFileName, file, FormatLog);
+            CreateFileWithSaveFilePanelForceLocation(FolderName, DefaultFileName, file, FormatLog);
 
             // Compile
             AssetDatabase.Refresh();

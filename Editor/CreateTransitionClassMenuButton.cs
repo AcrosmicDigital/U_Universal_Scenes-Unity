@@ -89,7 +89,7 @@ namespace U.Universal.Scenes.Editor
         {
 
             // Create files
-            CreateFileWithSaveFilePanel(FolderName, DefaultFileName, file, FormatLog);
+            CreateFileWithSaveFilePanelForceLocation(FolderName, DefaultFileName, file, FormatLog);
 
             // Compile
             AssetDatabase.Refresh();
