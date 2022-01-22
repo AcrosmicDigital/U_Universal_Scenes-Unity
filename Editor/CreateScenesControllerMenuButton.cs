@@ -3,20 +3,20 @@ using static U.Universal.Scenes.Editor.UE;
 
 namespace U.Universal.Scenes.Editor
 {
-    public class CreateJumpsFileMenuButton : EditorWindow
+    public class CreateScenesControllerMenuButton : EditorWindow
     {
 
-        #region Jumps File
-        private static string FolderName => "/Scripts/ScenesManagment/Uscenes/";
-        private static string FileName => "Jumps.cs";
+        #region ScenesController File
+        private static string FolderName => "/Scripts/Controllers/";
+        private static string FileName => "Scenes.controller.cs";
         private readonly static string[] file =
         {
             "using System.Threading.Tasks;",
             "using U.Universal.Scenes;",
             "",
-            "public static partial class Uscenes",
+            "public static partial class Control",
             "{",
-            "    public static partial class Jumps",
+            "    public static partial class Scenes",
             "    {",
             "        // Examples, you can delete them",
             "        /*",
@@ -44,14 +44,14 @@ namespace U.Universal.Scenes.Editor
             "    }",
             "}",
         };
-        #endregion Jumps File
+        #endregion ScenesController File
 
 
 
         private static string FormatLog(string text) => "UniversalScenes: " + text;
 
 
-        [MenuItem("Universal/Scenes/Create/Jumps File")]
+        [MenuItem("Universal/Scenes/Create/Scenes Controller")]
         public static void ShowWindow()
         {
 

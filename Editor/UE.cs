@@ -73,11 +73,21 @@ namespace U.Universal.Scenes.Editor
 
         }
 
-        public static void CreateFileWithSaveFilePanel(string defaultFileName, Func<string, string[]> file, Func<string, string> FormatLog)
+        public static void CreateFileWithSaveFilePanel(string defaultFolderName, string defaultFileName, Func<string, string[]> file, Func<string, string> FormatLog)
         {
+            // Check if Env folder exist or create it
+            if (!Directory.Exists(Application.dataPath + defaultFolderName))
+            {
+                Debug.Log(FormatLog("Creating Assets" + defaultFolderName + " directory"));
+                Directory.CreateDirectory(Application.dataPath + defaultFolderName);
+            }
+            else
+            {
+                Debug.Log(FormatLog("Assets" + defaultFolderName + " already exist"));
+            }
 
             // Read the File Name from the save file Panel
-            var path = EditorUtility.SaveFilePanel(title: "Create " + defaultFileName, directory: Application.dataPath, defaultName: defaultFileName, extension: "cs");
+            var path = EditorUtility.SaveFilePanel(title: "Create " + defaultFileName, Application.dataPath + defaultFolderName, defaultName: defaultFileName, extension: "cs");
 
             // check if scenes file exist or create it
             if (!File.Exists(path))
@@ -86,11 +96,49 @@ namespace U.Universal.Scenes.Editor
 
                 // Write the file
                 File.WriteAllLines(path, file(Path.GetFileNameWithoutExtension(path))); // This should be async when is available
-                
+
             }
             else
             {
                 Debug.LogError(FormatLog(path + " already exist"));
+            }
+
+        }
+
+        public static void CreateFileWithSaveFilePanelAndCustomExtension(string defaultFolderName, string defaultFileName, Func<string, string[]> file, Func<string, string> FormatLog, string extension)
+        {
+            // Check if Env folder exist or create it
+            if (!Directory.Exists(Application.dataPath + defaultFolderName))
+            {
+                Debug.Log(FormatLog("Creating Assets" + defaultFolderName + " directory"));
+                Directory.CreateDirectory(Application.dataPath + defaultFolderName);
+            }
+            else
+            {
+                Debug.Log(FormatLog("Assets" + defaultFolderName + " already exist"));
+            }
+
+            // Read the File Name from the save file Panel
+            var path = EditorUtility.SaveFilePanel(title: "Create " + defaultFileName, directory: Application.dataPath + defaultFolderName, defaultName: defaultFileName, extension: "cs");
+
+            // Get only the filename
+            var fileNameNoExtension = Path.GetFileNameWithoutExtension(path);
+            var fileDirectory = Path.GetDirectoryName(path);
+
+            var FilePath = fileDirectory + "/" + fileNameNoExtension + "." + extension + ".cs";
+
+            // Create Files
+            if (!File.Exists(FilePath))
+            {
+                Debug.Log(FormatLog("Creating " + FilePath + " file"));
+
+                // Write the files
+                File.WriteAllLines(FilePath, file(fileNameNoExtension)); // This should be async when is available
+
+            }
+            else
+            {
+                Debug.LogError(FormatLog(FilePath + " already exist"));
             }
 
         }
