@@ -6,9 +6,10 @@ namespace U.Universal.Scenes.Editor
     public class CreateTransitionClassMenuButton : EditorWindow
     {
 
-        #region TransitionClass File
+        #region File
         private static string FolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/TransitionClasses/";
-        private static string DefaultFileName => "NewTransition";
+        private static string DefaultFileName => "New";
+        private static string CustomExtension => "transition";
         static string[] file(string fileName) => new string[]
         {
             "using UnityEngine;",
@@ -77,7 +78,7 @@ namespace U.Universal.Scenes.Editor
             "    }",
             "}",
         };
-        #endregion TransitionClass File
+        #endregion File
 
 
 
@@ -89,7 +90,7 @@ namespace U.Universal.Scenes.Editor
         {
 
             // Create files
-            CreateFileWithSaveFilePanelForceLocation(FolderName, DefaultFileName, file, FormatLog);
+            CreateFileWithSaveFilePanelAndCustomExtension(FolderName, DefaultFileName, file, FormatLog, CustomExtension);
 
             // Compile
             AssetDatabase.Refresh();

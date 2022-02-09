@@ -6,7 +6,7 @@ namespace U.Universal.Scenes.Editor
     public class CreateSceneManagerMenuButton : EditorWindow
     {
 
-        #region TransitionClass File
+        #region File
         private static string FolderName => "/Scripts/ScenesManagment/";
         private static string DefaultFileName => "NewSceneManager";
         static string[] file(string fileName) => new string[]
@@ -70,7 +70,7 @@ namespace U.Universal.Scenes.Editor
             "",
             "}",
         };
-        #endregion TransitionClass File
+        #endregion File
 
 
 

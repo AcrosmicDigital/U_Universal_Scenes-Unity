@@ -6,7 +6,7 @@ namespace U.Universal.Scenes.Editor
     public class CreateScenesControllerMenuButton : EditorWindow
     {
 
-        #region ScenesController File
+        #region File
         private static string FolderName => "/Scripts/Controllers/";
         private static string FileName => "Scenes.controller.cs";
         private readonly static string[] file =
@@ -44,7 +44,7 @@ namespace U.Universal.Scenes.Editor
             "    }",
             "}",
         };
-        #endregion ScenesController File
+        #endregion File
 
 
 

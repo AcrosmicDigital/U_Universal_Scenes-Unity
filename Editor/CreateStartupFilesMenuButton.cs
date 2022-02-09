@@ -7,8 +7,8 @@ namespace U.Universal.Scenes.Editor
     {
 
         #region Startup File
-        private static string startupFolderName => "/Scripts/ScenesManagment/Uscenes/";
-        private static string startupFileName => "Startup.cs";
+        private static string startupFolderName => "/Scripts/Startup/";
+        private static string startupFileName => "SceneMonitor.startup.cs";
         private static readonly string[] startupFile =
         {
             "using UnityEngine;",
@@ -21,7 +21,7 @@ namespace U.Universal.Scenes.Editor
             "{",
             "",
             "    [RuntimeInitializeOnLoadMethod]",
-            "    public static void Startup()",
+            "    public static void SceneMonitorStartup()",
             "    {",
             "",
             "        // Dev",
@@ -55,8 +55,8 @@ namespace U.Universal.Scenes.Editor
         #endregion Startup File
 
         #region DevStage File
-        private static string devStageFolderName => "/Scripts/Env/Vars/";
-        private static string devStageFileName => "DevStage.cs";
+        private static string devStageFolderName => "/Scripts/Env/";
+        private static string devStageFileName => "DevStage.env.cs";
         private static readonly string[] devStageFile =
         {
             "",
@@ -69,7 +69,7 @@ namespace U.Universal.Scenes.Editor
             "    {",
             "",
             "        // Enable or disable Universal Scenes",
-            "        public static bool enableUscenes = true;",
+            "        public static bool enableUscenes => true;",
             "",
             "        // Select stage",
             "        public static DevStages devStage => DevStages.Dev;",
@@ -88,7 +88,7 @@ namespace U.Universal.Scenes.Editor
 
         #region DevSelectorsList File
         private static string devSelectorsListFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
-        private static string devSelectorsListFileName => "DevSelectorsList.cs";
+        private static string devSelectorsListFileName => "Dev.slist.cs";
         private static readonly string[] devSelectorsListFile =
         {
             "using U.Universal.Scenes;",
@@ -110,7 +110,7 @@ namespace U.Universal.Scenes.Editor
 
         #region ProdSelectorsList File
         private static string prodSelectorsListFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
-        private static string prodSelectorsListFileName => "ProdSelectorsList.cs";
+        private static string prodSelectorsListFileName => "Prod.slist.cs";
         private static readonly string[] prodSelectorsListFile =
         {
             "using U.Universal.Scenes;",
@@ -132,7 +132,7 @@ namespace U.Universal.Scenes.Editor
 
         #region Selectors File
         private static string selectorsFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
-        private static string selectorsFileName => "Selectors.cs";
+        private static string selectorsFileName => "Main.selectors.cs";
         private static readonly string[] selectorsFile =
         {
             "using UnityEngine;",
@@ -164,7 +164,7 @@ namespace U.Universal.Scenes.Editor
 
         #region DevTransitionsList File
         private static string devTransitionsListFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/";
-        private static string devTransitionsListFileName => "DevTransitionsList.cs";
+        private static string devTransitionsListFileName => "Dev.tlist.cs";
         private static readonly string[] devTransitionsListFile =
         {
             "using U.Universal.Scenes;",
@@ -187,7 +187,7 @@ namespace U.Universal.Scenes.Editor
 
         #region ProdTransitionsList File
         private static string prodTransitionsListFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/";
-        private static string prodTransitionsListFileName => "ProdTransitionsList.cs";
+        private static string prodTransitionsListFileName => "Prod.tlist.cs";
         private static readonly string[] prodTransitionsListFile =
         {
             "using U.Universal.Scenes;",
@@ -210,7 +210,7 @@ namespace U.Universal.Scenes.Editor
 
         #region SampleTransition File
         private static string sampleTransitionFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/TransitionClasses/";
-        private static string sampleTransitionFileName => "SampleTransition.cs";
+        private static string sampleTransitionFileName => "Sample.transition.cs";
         private static readonly string[] sampleTransitionFile =
         {
             "using UnityEngine;",

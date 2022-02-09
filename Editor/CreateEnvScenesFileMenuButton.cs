@@ -6,9 +6,9 @@ namespace U.Universal.Scenes.Editor
     public class CreateEnvScenesFileMenuButton : EditorWindow
     {
 
-        #region EnvScenes File
+        #region File
         private static string FolderName => "/Scripts/Env/";
-        private static string FileName => "Scenes.cs";
+        private static string FileName => "Scenes.env.cs";
         private readonly static string[] file =
         {
             "",
@@ -26,7 +26,7 @@ namespace U.Universal.Scenes.Editor
             "    }",
             "}",
         };
-        #endregion EnvScenes File
+        #endregion File
 
 
 
