@@ -286,8 +286,6 @@ namespace U.Universal.Scenes
                 return operation.Fails(e);
             }
 
-            isInTransition = false;
-
             return operation.Successful("1");
 
         }
@@ -338,8 +336,6 @@ namespace U.Universal.Scenes
                 Debug.LogError("Unload Error: " + e);
                 return operation.Fails(e);
             }
-
-            isInTransition = false;
 
             return operation.Successful("1");
 
