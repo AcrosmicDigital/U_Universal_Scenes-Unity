@@ -33,7 +33,7 @@ namespace U.Universal.Scenes.Editor
         private static string FormatLog(string text) => "UniversalScenes: " + text;
 
 
-        [MenuItem("Universal/Scenes/Create/Scenes File")]
+        [MenuItem("Universal/Scenes/Create/Env Scenes File")]
         public static void ShowWindow()
         {
 

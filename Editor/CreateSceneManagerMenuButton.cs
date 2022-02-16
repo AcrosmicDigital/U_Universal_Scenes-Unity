@@ -7,7 +7,7 @@ namespace U.Universal.Scenes.Editor
     {
 
         #region File
-        private static string FolderName => "/Scripts/ScenesManagment/";
+        private static string FolderName => "/Scripts/Control/ScenesManagment/Managers/";
         private static string DefaultFileName => "NewSceneManager";
         static string[] file(string fileName) => new string[]
         {

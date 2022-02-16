@@ -7,7 +7,7 @@ namespace U.Universal.Scenes.Editor
     {
 
         #region File
-        private static string FolderName => "/Scripts/Controllers/";
+        private static string FolderName => "/Scripts/Control/";
         private static string FileName => "Scenes.controller.cs";
         private readonly static string[] file =
         {

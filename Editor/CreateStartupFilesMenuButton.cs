@@ -7,7 +7,7 @@ namespace U.Universal.Scenes.Editor
     {
 
         #region Startup File
-        private static string startupFolderName => "/Scripts/Startup/";
+        private static string startupFolderName => "/Scripts/Control/Startup/";
         private static string startupFileName => "SceneMonitor.startup.cs";
         private static readonly string[] startupFile =
         {
@@ -55,7 +55,7 @@ namespace U.Universal.Scenes.Editor
         #endregion Startup File
 
         #region DevStage File
-        private static string devStageFolderName => "/Scripts/Env/";
+        private static string devStageFolderName => "/Scripts/Env/Vars/";
         private static string devStageFileName => "DevStage.env.cs";
         private static readonly string[] devStageFile =
         {
@@ -87,7 +87,7 @@ namespace U.Universal.Scenes.Editor
         #endregion DevStage File
 
         #region DevSelectorsList File
-        private static string devSelectorsListFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
+        private static string devSelectorsListFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
         private static string devSelectorsListFileName => "Dev.slist.cs";
         private static readonly string[] devSelectorsListFile =
         {
@@ -109,7 +109,7 @@ namespace U.Universal.Scenes.Editor
         #endregion DevSelectorsList File
 
         #region ProdSelectorsList File
-        private static string prodSelectorsListFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
+        private static string prodSelectorsListFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
         private static string prodSelectorsListFileName => "Prod.slist.cs";
         private static readonly string[] prodSelectorsListFile =
         {
@@ -131,7 +131,7 @@ namespace U.Universal.Scenes.Editor
         #endregion ProdSelectorsList File
 
         #region Selectors File
-        private static string selectorsFolderName => "/Scripts/ScenesManagment/Uscenes/Selectors/";
+        private static string selectorsFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
         private static string selectorsFileName => "Main.selectors.cs";
         private static readonly string[] selectorsFile =
         {
@@ -163,7 +163,7 @@ namespace U.Universal.Scenes.Editor
         #endregion Selectors File
 
         #region DevTransitionsList File
-        private static string devTransitionsListFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/";
+        private static string devTransitionsListFolderName => "/Scripts/Control/ScenesManagment/Transitions/";
         private static string devTransitionsListFileName => "Dev.tlist.cs";
         private static readonly string[] devTransitionsListFile =
         {
@@ -186,7 +186,7 @@ namespace U.Universal.Scenes.Editor
         #endregion DevTransitionsList File
 
         #region ProdTransitionsList File
-        private static string prodTransitionsListFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/";
+        private static string prodTransitionsListFolderName => "/Scripts/Control/ScenesManagment/Transitions/";
         private static string prodTransitionsListFileName => "Prod.tlist.cs";
         private static readonly string[] prodTransitionsListFile =
         {
@@ -209,7 +209,7 @@ namespace U.Universal.Scenes.Editor
         #endregion ProdSelectorsList File
 
         #region SampleTransition File
-        private static string sampleTransitionFolderName => "/Scripts/ScenesManagment/Uscenes/Transitions/TransitionClasses/";
+        private static string sampleTransitionFolderName => "/Scripts/Control/ScenesManagment/Transitions/TransitionClasses/";
         private static string sampleTransitionFileName => "Sample.transition.cs";
         private static readonly string[] sampleTransitionFile =
         {
