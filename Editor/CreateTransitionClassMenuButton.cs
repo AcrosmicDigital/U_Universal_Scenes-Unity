@@ -7,7 +7,7 @@ namespace U.Universal.Scenes.Editor
     {
 
         #region File
-        private static string FolderName => "/Scripts/Control/ScenesManagment/Transitions/TransitionClasses/";
+        private static string FolderName => "/Scripts/Control/ScenesManagment/Transitions/";
         private static string DefaultFileName => "New";
         private static string CustomExtension => "transition";
         static string[] file(string fileName) => new string[]

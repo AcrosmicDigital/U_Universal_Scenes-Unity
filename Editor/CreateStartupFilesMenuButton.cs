@@ -24,29 +24,14 @@ namespace U.Universal.Scenes.Editor
             "    public static void SceneMonitorStartup()",
             "    {",
             "",
-            "        // Dev",
-            "        if(Env.Vars.devStage == Env.Vars.DevStages.Dev)",
-            "        {",
-            "            // Apply selectors",
-            "            SceneMonitor.Apply(DevSelectorsList);",
+            "        // Apply selectors",
+            "        SceneMonitor.Apply(SelectorsList);",
             "",
-            "            // Apply transitions",
-            "            SceneMonitor.Apply(DevTransitionsList);",
-            "        }",
-            "",
-            "        // Prod",
-            "        else if(Env.Vars.devStage == Env.Vars.DevStages.Prod)",
-            "        {",
-            "            // Apply selectors",
-            "            SceneMonitor.Apply(ProdSelectorsList);",
-            "",
-            "            // Apply transitions",
-            "            SceneMonitor.Apply(ProdTransitionsList);",
-            "        }",
-            "",
+            "        // Apply transitions",
+            "        SceneMonitor.Apply(TransitionsList);",
             "",
             "        // Enable",
-            "        if(Env.Vars.enableUscenes) SceneMonitor.Enable();",
+            "        SceneMonitor.Enable();",
             "",
             "    }",
             "",
@@ -54,147 +39,46 @@ namespace U.Universal.Scenes.Editor
         };
         #endregion Startup File
 
-        #region DevStage File
-        private static string devStageFolderName => "/Scripts/Env/Vars/";
-        private static string devStageFileName => "DevStage.env.cs";
-        private static readonly string[] devStageFile =
-        {
-            "",
-            "/// <summary>",
-            "/// You can edit this file, but dont modify the current enum members",
-            "/// </summary>",
-            "public static partial class Env",
-            "{",
-            "    public static partial class Vars",
-            "    {",
-            "",
-            "        // Enable or disable Universal Scenes",
-            "        public static bool enableUscenes => true;",
-            "",
-            "        // Select stage",
-            "        public static DevStages devStage => DevStages.Dev;",
-            "",
-            "        // Add more stages",
-            "        public enum DevStages",
-            "        {",
-            "            Prod,",
-            "            Dev,",
-            "        }",
-            "",
-            "    }",
-            "}",
-        };
-        #endregion DevStage File
-
-        #region DevSelectorsList File
-        private static string devSelectorsListFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
-        private static string devSelectorsListFileName => "Dev.slist.cs";
-        private static readonly string[] devSelectorsListFile =
+        #region SelectorsList File
+        private static string selectorsListFolderName => "/Scripts/Control/ScenesManagment/";
+        private static string selectorsListFileName => "SelectorsList.cs";
+        private static readonly string[] selectorsListFile =
         {
             "using U.Universal.Scenes;",
-            "",
-            "public static partial class Uscenes",
-            "{",
-            "    public static ISceneSelector[] DevSelectorsList => new ISceneSelector[]",
-            "    {",
-            "",
-            "        // List of dev selectors",
-            "        Selectors.SampleSelector,",
-            "        // ... Add here selectors to use when dev stage is selected",
-            "",
-            "",
-            "    };",
-            "}",
-        };
-        #endregion DevSelectorsList File
-
-        #region ProdSelectorsList File
-        private static string prodSelectorsListFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
-        private static string prodSelectorsListFileName => "Prod.slist.cs";
-        private static readonly string[] prodSelectorsListFile =
-        {
-            "using U.Universal.Scenes;",
-            "",
-            "public static partial class Uscenes",
-            "{",
-            "    public static ISceneSelector[] ProdSelectorsList => new ISceneSelector[]",
-            "    {",
-            "",
-            "        // List of prod selectors",
-            "        Selectors.SampleSelector,",
-            "        // ... Add here selectors to use when prod stage is selected",
-            "",
-            "",
-            "    };",
-            "}",
-        };
-        #endregion ProdSelectorsList File
-
-        #region Selectors File
-        private static string selectorsFolderName => "/Scripts/Control/ScenesManagment/Selectors/";
-        private static string selectorsFileName => "Main.selectors.cs";
-        private static readonly string[] selectorsFile =
-        {
             "using UnityEngine;",
-            "using U.Universal.Scenes;",
-            "",
-            "/// <summary>",
-            "/// Edit selectors or add more, this selectors are added in dev and prod selectors list",
-            "/// </summary>",
-            "public static partial class Uscenes",
-            "{",
-            "    public static partial class Selectors",
-            "    {",
-            "",
-            "        public static readonly SceneSelector SampleSelector = new SceneSelector",
-            "        {",
-            "            pattern = "+quote+"*"+quote+",",
-            "            onLoad = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onLoad "+quote+" + s.name),",
-            "            onSetActive = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onSetActive "+quote+" + s.name),",
-            "            onSetInactive = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onSetInactive "+quote+" + s.name),",
-            "            onUnload = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onUnload "+quote+" + s.name),",
-            "        };",
-            "",
-            "        // ... Add more selectors here",
-            "",
-            "    }",
-            "}",
-        };
-        #endregion Selectors File
-
-        #region DevTransitionsList File
-        private static string devTransitionsListFolderName => "/Scripts/Control/ScenesManagment/Transitions/";
-        private static string devTransitionsListFileName => "Dev.tlist.cs";
-        private static readonly string[] devTransitionsListFile =
-        {
-            "using U.Universal.Scenes;",
             "",
             "public static partial class Uscenes",
             "{",
-            "    public static ISceneTransition[] DevTransitionsList => new ISceneTransition[]",
+            "    public static ISceneSelector[] SelectorsList => new ISceneSelector[]",
             "    {",
             "",
-            "        // List of dev transitions",
-            "        new Transitions.SampleTransition(),",
-            "        // ... Add here transitions to use when dev stage is selected",
-            "        //     To create  a new transition template go to Menu Bar -> U -> Universal Scenes -> Create Transition",
+            "        // List of selectors",
+            "        //new SceneSelector",
+            "        //{",
+            "        //    pattern = "+quote+"*"+quote+",",
+            "        //    onLoad = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onLoad "+quote+" + s.name),",
+            "        //    onSetActive = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onSetActive "+quote+" + s.name),",
+            "        //    onSetInactive = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onSetInactive "+quote+" + s.name),",
+            "        //    onUnload = (s) => Debug.Log("+quote+"Uscenes: SampleSelector onUnload "+quote+" + s.name),",
+            "        //},",
+            "        // ... Add here selectors",
             "",
             "",
             "    };",
             "}",
         };
-        #endregion DevTransitionsList File
+        #endregion SelectorsList File
 
-        #region ProdTransitionsList File
+        #region TransitionsList File
         private static string prodTransitionsListFolderName => "/Scripts/Control/ScenesManagment/Transitions/";
-        private static string prodTransitionsListFileName => "Prod.tlist.cs";
+        private static string prodTransitionsListFileName => "TransitionsList.cs";
         private static readonly string[] prodTransitionsListFile =
         {
             "using U.Universal.Scenes;",
             "",
             "public static partial class Uscenes",
             "{",
-            "    public static ISceneTransition[] ProdTransitionsList => new ISceneTransition[]",
+            "    public static ISceneTransition[] TransitionsList => new ISceneTransition[]",
             "    {",
             "",
             "        // List of prod transitions",
@@ -206,10 +90,10 @@ namespace U.Universal.Scenes.Editor
             "    };",
             "}",
         };
-        #endregion ProdSelectorsList File
+        #endregion TransitionsList File
 
         #region SampleTransition File
-        private static string sampleTransitionFolderName => "/Scripts/Control/ScenesManagment/Transitions/TransitionClasses/";
+        private static string sampleTransitionFolderName => "/Scripts/Control/ScenesManagment/Transitions/";
         private static string sampleTransitionFileName => "Sample.transition.cs";
         private static readonly string[] sampleTransitionFile =
         {
@@ -327,11 +211,8 @@ namespace U.Universal.Scenes.Editor
 
             // Create files
             CreateFile(startupFolderName, startupFileName, startupFile, FormatLog);
-            CreateFile(devStageFolderName, devStageFileName, devStageFile, FormatLog);
-            CreateFile(devSelectorsListFolderName, devSelectorsListFileName, devSelectorsListFile, FormatLog);
-            CreateFile(prodSelectorsListFolderName, prodSelectorsListFileName, prodSelectorsListFile, FormatLog);
-            CreateFile(selectorsFolderName, selectorsFileName, selectorsFile, FormatLog);
-            CreateFile(devTransitionsListFolderName, devTransitionsListFileName, devTransitionsListFile, FormatLog);
+            CreateFile(selectorsListFolderName, selectorsListFileName, selectorsListFile, FormatLog);
+
             CreateFile(prodTransitionsListFolderName, prodTransitionsListFileName, prodTransitionsListFile, FormatLog);
             CreateFile(sampleTransitionFolderName, sampleTransitionFileName, sampleTransitionFile, FormatLog);
 
