@@ -13,11 +13,12 @@ namespace U.Universal.Scenes.Editor
         {
             "using UnityEngine;",
             "using U.Universal.Scenes;",
+            "using static Uscenes;",
             "",
             "/// <summary>",
             "/// Dont edit this file, to change stage or enable, edit Assets/Scripts/Env/Vars/DevStage.cs",
             "/// </summary>",
-            "public static partial class Uscenes  // Dir: Assets/Scripts/Uscenes/Startup.cs",
+            "public static partial class Startup  // Dir: Assets/Scripts/Uscenes/Startup.cs",
             "{",
             "",
             "    [RuntimeInitializeOnLoadMethod]",
